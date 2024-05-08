@@ -1,7 +1,7 @@
 'use client';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { zodResolver } from '@hookform/resolvers/zod';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
+import { SERVER_URL } from '@/utils/Constants';
 
 const passwordSchema = z
   .string()
@@ -61,7 +62,7 @@ export default function ForgetPasswordPage() {
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const result = await axios.post(
-        `http://localhost:3001/api/v1/auth/reset/password`,
+        `${SERVER_URL}/auth/reset/password`,
         { password: values.newPassword, hash },
         {
           headers: {

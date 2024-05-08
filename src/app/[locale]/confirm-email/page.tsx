@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import { SERVER_URL } from '@/utils/Constants';
 
 export default function ConfirmEmailPage() {
   const { toast } = useToast();
@@ -20,7 +21,7 @@ export default function ConfirmEmailPage() {
   const handleConfirmEmail = async () => {
     try {
       const result = await axios.post(
-        `http://localhost:3001/api/v1/auth/email/confirm`,
+        `${SERVER_URL}/auth/email/confirm`,
         { hash },
         {
           headers: {
