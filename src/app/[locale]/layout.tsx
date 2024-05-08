@@ -12,23 +12,23 @@ export const metadata: Metadata = {
   icons: [
     {
       rel: 'apple-touch-icon',
-      url: '/referral-logo.png',
+      url: '/favicon.png',
     },
     {
       rel: 'icon',
       type: 'image/png',
       sizes: '32x32',
-      url: '/referral-logo.png',
+      url: '/favicon.png',
     },
     {
       rel: 'icon',
       type: 'image/png',
       sizes: '16x16',
-      url: '/referral-logo.png',
+      url: '/favicon.png',
     },
     {
       rel: 'icon',
-      url: '/referral-logo.png',
+      url: '/favicon.png',
     },
   ],
 };
