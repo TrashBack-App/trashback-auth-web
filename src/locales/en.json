@@ -1,100 +1,27 @@
 {
-  "Landing": {
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "merchant_link": "Merchants",
-    "team_link": "Teams",
-    "template_link": "Templates",
-    "statistic_link": "Statistics",
-    "setting_link": "Settings",
-    "helpdesk_link": "Helpdesk",
-    "landing_welcome": "welcome",
-    "landing_shop": "shop",
-    "landing_community": "community",
-    "landing_pack_promo": "pack promo",
-    "landing_exposition": "exposition",
-    "landing_profile": "profile",
-    "landing_how_it_works": "how it works",
-    "here_you_win": "here you win",
-    "community_offers": "community offers",
-    "our_activities": "our activities",
-    "testimonials": "testimonials"
-  },
-  "Sidebar": {
-    "campaign_link": "Campaigns",
-    "merchant_link": "Merchants",
-    "team_link": "Teams",
-    "template_link": "Templates",
-    "statistic_link": "Statistics",
-    "setting_link": "Settings",
-    "helpdesk_link": "Helpdesk"
-  },
-  "RootLayout": {
-    "home_link": "Home",
-    "about_link": "About",
-    "guestbook_link": "Guestbook",
-    "portfolio_link": "Portfolio",
-    "sign_in_link": "Sign in",
-    "sign_up_link": "Sign up"
-  },
-  "BaseTemplate": {
-    "description": "Starter code for your Nextjs Boilerplate with Tailwind CSS",
-    "made_with": "Made with"
-  },
-  "Index": {
-    "meta_title": "Next.js Boilerplate Presentation",
-    "meta_description": "Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
-  },
-  "Guestbook": {
-    "meta_title": "Guestbook",
-    "meta_description": "An example of CRUD operation",
-    "database_powered_by": "Database powered by",
-    "loading_guestbook": "Loading guestbook..."
-  },
-  "GuestbookForm": {
-    "username": "Username",
-    "body": "Body",
-    "save": "Save"
-  },
-  "About": {
-    "meta_title": "About",
-    "meta_description": "About page description",
-    "about_paragraph": "Welcome to our About page! We are a team of passionate individuals dedicated to creating amazing software.",
-    "translation_powered_by": "Translation powered by"
-  },
-  "Portfolio": {
-    "meta_title": "Portfolio",
-    "meta_description": "Welcome to my portfolio page!",
-    "presentation": "Welcome to my portfolio page! Here you will find a carefully curated collection of my work and accomplishments. Through this portfolio, I'm to showcase my expertise, creativity, and the value I can bring to your projects.",
-    "portfolio_name": "Portfolio {name}",
-    "monitoring_powered_by": "Monitoring powered by"
-  },
-  "PortfolioSlug": {
-    "meta_title": "Portfolio {slug}",
-    "meta_description": "Portfolio {slug} description",
-    "header": "Portfolio {slug}",
-    "content": "Created a set of promotional materials and branding elements for a corporate event. Crafted a visually unified theme, encompassing a logo, posters, banners, and digital assets. Integrated the client's brand identity while infusing it with a contemporary and innovative approach. Garnered favorable responses from event attendees, resulting in a successful event with heightened participant engagement and increased brand visibility.",
-    "error_reporting_powered_by": "Error reporting powered by",
-    "coverage_powered_by": "Code coverage powered by"
-  },
-  "SignIn": {
-    "meta_title": "Sign in",
-    "meta_description": "Seamlessly sign in to your account with our user-friendly login process."
-  },
-  "SignUp": {
-    "meta_title": "Sign up",
-    "meta_description": "Effortlessly create an account through our intuitive sign-up process."
-  },
-  "Dashboard": {
-    "meta_title": "Dashboard",
-    "hello_message": "Hello {email}!"
-  },
-  "UserProfile": {
-    "meta_title": "User Profile"
-  },
-  "DashboardLayout": {
-    "dashboard_link": "Dashboard",
-    "user_profile_link": "Manage your account",
-    "sign_out": "Sign out"
+  "MainPage": {
+    "welcome-msg": "Trash back Confirm Account, Reset Password & Delete Account",
+    "activation-msg": "Activate your account",
+    "confirm-email-msg": "Activate",
+    "activate-btn-msg": "Confirm Email",
+    "reset-msg": "Reset Password",
+    "reset-password-msg": "Reset your password",
+    "new-password-msg": "New Password",
+    "confirm-new-password-msg": "Confirm new Password",
+    "reset-btn-msg": "Reset",
+    "toast-success-header": "Success!",
+    "toast-success-activation-msg": "Your email has been confirmed.",
+    "toast-success-deletion-msg": "Your account has been delete.",
+    "toast-error-header": "Uh oh! Something went wrong.!",
+    "toast-error-activation-msg": "There was a problem with your request.",
+    "success-msg": "Success",
+    "success-headers2-msg": "Operation succeeded, return to the app",
+    "delete-account-msg": "Delete Account",
+    "delete-account-header2-msg": "Delete all your account setting and data",
+    "email-msg": "Email",
+    "password-msg": "Password",
+    "delete-btn-msg": "Delete",
+    "cancel-btn-msg": "Cancel",
+    "delete-notif-msg": "Please note that all your history and setting will be entirely removed"
   }
 }

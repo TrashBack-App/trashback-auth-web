@@ -4,7 +4,7 @@ const localePrefix: LocalePrefix = 'as-needed';
 
 // FIXME: Update this configuration file based on your project information
 export const AppConfig = {
-  name: 'Referral Pulse',
+  name: 'Trashback authentication',
   locales: ['en', 'fr'],
   defaultLocale: 'en',
   localePrefix,

@@ -1,11 +1,16 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { toast } from 'sonner';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useTranslations } from 'use-intl';
 import * as z from 'zod';
 
 import { Button } from '@/components/ui/button';
@@ -18,8 +23,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useToast } from '@/components/ui/use-toast';
-import { SERVER_URL } from '@/utils/Constants';
+import { SERVER_URL } from '@/lib/constants';
 
 const passwordSchema = z
   .string()
@@ -44,8 +48,8 @@ const formSchema = z
   );
 
 export default function ForgetPasswordPage() {
-  const { toast } = useToast();
   const router = useRouter();
+  const t = useTranslations('MainPage');
   const searchParams = useSearchParams();
   const hash = searchParams.get('hash');
   if (!hash) {
@@ -59,30 +63,34 @@ export default function ForgetPasswordPage() {
     },
   });
 
-  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    try {
-      const result = await axios.post(
-        `${SERVER_URL}/auth/reset/password`,
-        { password: values.newPassword, hash },
-        {
-          headers: {
-            'Content-Type': 'application/json',
+  const handleForgetPasswordMutation = useMutation({
+    mutationFn: async (values: z.infer<typeof formSchema>) => {
+      try {
+        const result = await axios.post(
+          `${SERVER_URL}/auth/reset/password`,
+          { password: values.newPassword, hash },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
           },
-        },
-      );
-      if (result.status === 200) {
-        toast({
-          title: 'Success!',
-          description: 'Your email has been confirmed.',
+        );
+        if (result.status === 200) {
+          toast.success(t('toast-success-header'), {
+            description: t('toast-success-activation-msg'),
+          });
+          router.push('/success');
+        }
+      } catch (error) {
+        toast(t('toast-error-header'), {
+          description: t('toast-error-activation-msg'),
         });
-        router.push('/success');
       }
-    } catch (error) {
-      toast({
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.',
-      });
-    }
+    },
+  });
+
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    handleForgetPasswordMutation.mutate(values);
   };
 
   return (
@@ -90,9 +98,9 @@ export default function ForgetPasswordPage() {
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">Reset Password</h1>
+            <h1 className="text-3xl font-bold"> {t('reset-msg')}</h1>
             <p className="text-balance text-muted-foreground">
-              Reset your password
+              {t('reset-password-msg')}
             </p>
           </div>
           <Form {...form}>
@@ -108,10 +116,10 @@ export default function ForgetPasswordPage() {
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel>New Password</FormLabel>
+                        <FormLabel>{t('new-password-msg')}</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="new password"
+                            placeholder={t('confirm-new-password-msg')}
                             type="newPassword"
                             {...field}
                           />
@@ -127,10 +135,10 @@ export default function ForgetPasswordPage() {
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel>Confirm new Password</FormLabel>
+                        <FormLabel>{t('confirm-new-password-msg')}</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="confirm new password"
+                            placeholder={t('confirm-new-password-msg')}
                             type="confirmNewPassword"
                             {...field}
                           />
@@ -146,7 +154,7 @@ export default function ForgetPasswordPage() {
                 type="submit"
                 className="flex items-center justify-center gap-2"
               >
-                <span>Reset</span>
+                <span>{t('reset-btn-msg')}</span>
               </Button>
             </form>
           </Form>

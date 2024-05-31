@@ -5,8 +5,10 @@ import { notFound } from 'next/navigation';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import React from 'react';
 
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import Providers from '@/lib/providers';
 import { AppConfig } from '@/utils/AppConfig';
+import { Toaster } from '@/components/ui/sonner';
 
 export const metadata: Metadata = {
   icons: [
@@ -50,7 +52,9 @@ export default function RootLayout(props: {
           locale={props.params.locale}
           messages={messages}
         >
+          <LocaleSwitcher />
           <Providers>{props.children}</Providers>
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>

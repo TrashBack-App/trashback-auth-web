@@ -1,56 +1,72 @@
 'use client';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { toast } from 'sonner';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useTranslations } from 'use-intl';
 
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
-import { SERVER_URL } from '@/utils/Constants';
+import { SERVER_URL } from '@/lib/constants';
 
 export default function ConfirmEmailPage() {
-  const { toast } = useToast();
   const router = useRouter();
+  const t = useTranslations('MainPage');
   const searchParams = useSearchParams();
   const hash = searchParams.get('hash');
   if (!hash) {
     throw Error('No hash provided');
   }
 
-  const handleConfirmEmail = async () => {
-    try {
-      const result = await axios.post(
-        `${SERVER_URL}/auth/email/confirm`,
-        { hash },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );
-      if (result.status === 200) {
-        toast({
-          title: 'Success!',
-          description: 'Your email has been confirmed.',
-        });
-        router.push('/success');
-      }
-    } catch (error) {
-      toast({
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.',
+  const handleConfirmEmailMutation = useMutation({
+    mutationFn: async () => {
+      const toastId = toast(t('activate-btn-msg'));
+      toast.loading('Loading...', {
+        description: t('activate-btn-msg'),
+        id: toastId,
       });
-    }
+      try {
+        const response = await axios.post(
+          `${SERVER_URL}/auth/email/confirm`,
+          { hash },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+        if (response.status === 200) {
+          toast.success(t('toast-success-header'), {
+            description: t('toast-success-activation-msg'),
+          });
+          router.push('/success');
+        }
+        toast.dismiss();
+      } catch (error: any) {
+        const errorDetails = error.response.data.message;
+        toast.error(t('toast-error-header'), {
+          description: `${t('toast-error-activation-msg')} ${errorDetails}`,
+        });
+        toast.dismiss();
+      }
+    },
+  });
+  const handleConfirmEmail = async () => {
+    handleConfirmEmailMutation.mutate();
   };
+
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">Confirm Email</h1>
+            <h1 className="text-3xl font-bold">{t('confirm-email-msg')}</h1>
             <p className="text-balance text-muted-foreground">
-              Activate your account
+              {t('activation-msg')}
             </p>
           </div>
           <div className="grid gap-4">
@@ -59,7 +75,7 @@ export default function ConfirmEmailPage() {
               className="w-full"
               onClick={handleConfirmEmail}
             >
-              Activate
+              {t('activate-btn-msg')}
             </Button>
           </div>
         </div>
