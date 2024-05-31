@@ -167,11 +167,13 @@ export default function ForgetPasswordPage() {
           />
         </div>
       </div>
-      <DeleteAccountDrawer
-        openDrawer={openDrawer}
-        setOpenDrawer={setOpenDrawer}
-        user={user}
-      />
+      {user && (
+        <DeleteAccountDrawer
+          openDrawer={openDrawer}
+          setOpenDrawer={setOpenDrawer}
+          user={user}
+        />
+      )}
     </>
   );
 }
