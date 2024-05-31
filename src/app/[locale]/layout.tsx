@@ -6,9 +6,9 @@ import { NextIntlClientProvider, useMessages } from 'next-intl';
 import React from 'react';
 
 import LocaleSwitcher from '@/components/LocaleSwitcher';
+import { Toaster } from '@/components/ui/sonner';
 import Providers from '@/lib/providers';
 import { AppConfig } from '@/utils/AppConfig';
-import { Toaster } from '@/components/ui/sonner';
 
 export const metadata: Metadata = {
   icons: [
